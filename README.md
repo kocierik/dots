@@ -1,2 +1,2 @@
-# zsh
-configuration zsh
+# NeoVim
+configuration vim
