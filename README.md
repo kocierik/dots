@@ -1,2 +1,2 @@
-# NeoVim
-configuration vim
+# Configuration
+Personal shortcut 
