@@ -7,8 +7,8 @@
 ## Quickly restart the yabai launch agent
 ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
-## Close active applicaion
-alt - backspace : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
+## Close active application
+#alt - backspace : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
 
 # test a command
 # lshift - x : terminal-notifier -message "lshift - x"
