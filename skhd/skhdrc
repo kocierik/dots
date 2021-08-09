@@ -33,16 +33,16 @@ alt - 2 : yabai -m window --display 2 yabai -m display --focus 2
 alt - 3 : yabai -m window --display 3 yabai -m display --focus 3
 
 ## increase window size
-#shift - e : yabai -m window --resize left:-20:0
+shift - a : yabai -m window --resize left:-20:0
 #shift + alt - s : yabai -m window --resize bottom:0:20
 #shift + alt - w : yabai -m window --resize top:0:-20
-ctrl - e : yabai -m window --resize right:20:0
+ctrl - d : yabai -m window --resize right:20:0
 
 ## decrease window size
-#shift + cmd - a : yabai -m window --resize left:20:0
+shift - d : yabai -m window --resize left:20:0
 #shift + cmd - s : yabai -m window --resize bottom:0:-20
 #shift + cmd - w : yabai -m window --resize top:0:20
-ctrl - w : yabai -m window --resize right:-20:0
+ctrl - a : yabai -m window --resize right:-20:0
 
 ## rotate tree 90
 ctrl - r : yabai -m space --rotate 90
@@ -81,12 +81,12 @@ hyper - f : yabai -m window --toggle zoom-fullscreen
 # ctrl + alt + cmd + lshift - i : yabai -m query --spaces | jq -re ".[] | select(.visible == 1).index" | xargs -I{} yabai -m query --windows --space {} | jq -re "[.[] | select((.\"stack-index\" <= 1) and (.app != \"Hammerspoon\"))]" | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | nth(index(map(select(.focused == 1))) - 1).id" | xargs -I{} yabai -m window --focus {}
 ctrl + alt + cmd + lshift - i : yabai -m query --spaces | jq -re ".[] | select(.visible == 1).index" | xargs -I{} yabai -m query --windows --space {} | jq -re "[.[] | select(.app != \"Hammerspoon\")]" | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | nth(index(map(select(.focused == 1))) - 1).id" | xargs -I{} yabai -m window --focus {}
 
-# ctrl + alt + cmd + rshift - i : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+# ctrl + alt + cmd : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
 
 #hyper - 0x29 : yabai -m query --spaces \
 #hyper - o : yabai -m query --spaces | jq -re ".[] | select(.visible == 1).index" | xargs -I{} yabai -m query --windows --space {} | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | reverse | nth(index(map(select(.focused == 1))) - 1).id" | xargs -I{} yabai -m window --focus {}
 
-#alt - n : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first
+cmd - c : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus first
 
 # go to each window WITHOUT going into a stack
 # ctrl + alt + cmd + lshift - o : yabai -m query --spaces | jq -re ".[] | select(.visible == 1).index" | xargs -I{} yabai -m query --windows --space {} | jq -re "[.[] | select((.\"stack-index\" <= 1) and (.app != \"Hammerspoon\"))]" | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | reverse | nth(index(map(select(.focused == 1))) - 1).id" | xargs -I{} yabai -m window --focus {}
@@ -121,12 +121,13 @@ shift + alt - b : yabai -m window --toggle border
 #yabai -m space --focus "${index}"
 
 ## create desktop and follow focus
-shift + alt - n : yabai -m space --create && \
+ctrl - n : yabai -m space --create && \
 index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
 yabai -m space --focus "${index}"
 
 ## destroy desktop
-cmd + shift - w : yabai -m space --destroy
+alt - r : yabai -m space --destroy
+
 
 ## fast focus desktop
 #alt - d - 1 : yabai -m space --focus last
@@ -165,4 +166,4 @@ cmd - 8 : yabai -m space --focus 8
 #ctrl - 1  : yabai -m display --focus next || yabai -m display --focus first
 #ctrl + alt - 1  : yabai -m display --focus 1
 #ctrl + alt - 2  : yabai -m display --focus 2
-#ctrl + alt - 3  : yabai -m display --focus 3i
+#ctrl + alt - 3  : yabai -m display --focus 3
