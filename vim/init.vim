@@ -41,6 +41,12 @@ Plug 'machakann/vim-sandwich'                           " make sandwiches
 Plug 'christoomey/vim-tmux-navigator'                   " seamless vim and tmux navigation
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'TovarishFin/vim-solidity'
+Plug 'RRethy/nvim-base16' " color theme
+Plug 'folke/zen-mode.nvim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'https://github.com/ryanoasis/vim-devicons'
+Plug 'https://github.com/adelarsq/vim-devicons-emoji'
+Plug 'preservim/nerdtree'
 call plug#end()
 
 "}}}
@@ -53,12 +59,12 @@ set clipboard+=unnamedplus                              " use system clipboard b
 set tabstop=2 softtabstop=2 shiftwidth=2 autoindent     " tab width
 set expandtab smarttab                                  " tab key actions
 set incsearch ignorecase smartcase hlsearch             " highlight text while searching
-set list listchars=trail:»,tab:»-                       " use tab to navigate in list mode
-set fillchars+=vert:\▏                                  " requires a patched nerd font (try FiraCode)
+set list listchars=trail:¬ª,tab:¬ª-                       " use tab to navigate in list mode
+set fillchars+=vert:\‚ñè                                  " requires a patched nerd font (try FiraCode)
 set wrap breakindent                                    " wrap long lines to the width set by tw
 set encoding=utf-8                                      " text encoding
 set number                                              " enable numbers on the left
-set relativenumber                                      " current line is 0
+"set relativenumber                                      " current line is 0
 set title                                               " tab title as file name
 set noshowmode                                          " dont show current mode below statusline
 set noshowcmd                                           " to get rid of display of last command
@@ -135,13 +141,13 @@ let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_min_count = 2   " show tabline only if there is more than 1 buffer
 let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
-let airline#extensions#coc#error_symbol = '✘:'
-let airline#extensions#coc#warning_symbol = '⚠:'
+let airline#extensions#coc#error_symbol = '‚úò:'
+let airline#extensions#coc#warning_symbol = '‚ö†:'
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.linenr = ''
-let g:airline_symbols.branch = '⎇ '
+let g:airline_symbols.branch = '‚éá '
 let g:airline_symbols.dirty= ''
 
 "" coc
@@ -173,7 +179,7 @@ let g:coc_global_extensions = [
             \]
 
 " indentLine
-let g:indentLine_char_list = ['▏', '¦', '┆', '┊']
+let g:indentLine_char_list = ['‚ñè', '¬¶', '‚îÜ', '‚îä']
 let g:indentLine_setColors = 0
 let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
 let g:indentLine_fileTypeExclude = ['startify']
@@ -209,14 +215,14 @@ let g:startify_commands = [
 " custom banner
 let g:startify_custom_header = [
  \ '',
- \ '                                                    ▟▙            ',
- \ '                                                    ▝▘            ',
- \ '            ██▃▅▇█▆▖  ▗▟████▙▖   ▄████▄   ██▄  ▄██  ██  ▗▟█▆▄▄▆█▙▖',
- \ '            ██▛▔ ▝██  ██▄▄▄▄██  ██▛▔▔▜██  ▝██  ██▘  ██  ██▛▜██▛▜██',
- \ '            ██    ██  ██▀▀▀▀▀▘  ██▖  ▗██   ▜█▙▟█▛   ██  ██  ██  ██',
- \ '            ██    ██  ▜█▙▄▄▄▟▊  ▀██▙▟██▀   ▝████▘   ██  ██  ██  ██',
- \ '            ▀▀    ▀▀   ▝▀▀▀▀▀     ▀▀▀▀       ▀▀     ▀▀  ▀▀  ▀▀  ▀▀',
- \ '            ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀',
+ \ '                                                    ‚ñü‚ñô            ',
+ \ '                                                    ‚ñù‚ñò            ',
+ \ '            ‚ñà‚ñà‚ñÉ‚ñÖ‚ñá‚ñà‚ñÜ‚ññ  ‚ñó‚ñü‚ñà‚ñà‚ñà‚ñà‚ñô‚ññ   ‚ñÑ‚ñà‚ñà‚ñà‚ñà‚ñÑ   ‚ñà‚ñà‚ñÑ  ‚ñÑ‚ñà‚ñà  ‚ñà‚ñà  ‚ñó‚ñü‚ñà‚ñÜ‚ñÑ‚ñÑ‚ñÜ‚ñà‚ñô‚ññ',
+ \ '            ‚ñà‚ñà‚ñõ‚ñî ‚ñù‚ñà‚ñà  ‚ñà‚ñà‚ñÑ‚ñÑ‚ñÑ‚ñÑ‚ñà‚ñà  ‚ñà‚ñà‚ñõ‚ñî‚ñî‚ñú‚ñà‚ñà  ‚ñù‚ñà‚ñà  ‚ñà‚ñà‚ñò  ‚ñà‚ñà  ‚ñà‚ñà‚ñõ‚ñú‚ñà‚ñà‚ñõ‚ñú‚ñà‚ñà',
+ \ '            ‚ñà‚ñà    ‚ñà‚ñà  ‚ñà‚ñà‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñò  ‚ñà‚ñà‚ññ  ‚ñó‚ñà‚ñà   ‚ñú‚ñà‚ñô‚ñü‚ñà‚ñõ   ‚ñà‚ñà  ‚ñà‚ñà  ‚ñà‚ñà  ‚ñà‚ñà',
+ \ '            ‚ñà‚ñà    ‚ñà‚ñà  ‚ñú‚ñà‚ñô‚ñÑ‚ñÑ‚ñÑ‚ñü‚ñä  ‚ñÄ‚ñà‚ñà‚ñô‚ñü‚ñà‚ñà‚ñÄ   ‚ñù‚ñà‚ñà‚ñà‚ñà‚ñò   ‚ñà‚ñà  ‚ñà‚ñà  ‚ñà‚ñà  ‚ñà‚ñà',
+ \ '            ‚ñÄ‚ñÄ    ‚ñÄ‚ñÄ   ‚ñù‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ     ‚ñÄ‚ñÄ‚ñÄ‚ñÄ       ‚ñÄ‚ñÄ     ‚ñÄ‚ñÄ  ‚ñÄ‚ñÄ  ‚ñÄ‚ñÄ  ‚ñÄ‚ñÄ',
+ \ '            ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ',
  \ '',
  \ '',
  \]
@@ -452,5 +458,10 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 
-"}}}
+" NERDTree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-s> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
+"}}}
