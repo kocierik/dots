@@ -44,9 +44,10 @@ Plug 'TovarishFin/vim-solidity'
 Plug 'RRethy/nvim-base16' " color theme
 Plug 'folke/zen-mode.nvim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'https://github.com/ryanoasis/vim-devicons'
-Plug 'https://github.com/adelarsq/vim-devicons-emoji'
-Plug 'preservim/nerdtree'
+Plug 'https://github.com/ryanoasis/vim-devicons' "icon
+Plug 'https://github.com/adelarsq/vim-devicons-emoji' " icon
+Plug 'preservim/nerdtree' " file manager
+Plug 'projekt0n/github-nvim-theme' "nvim theme
 call plug#end()
 
 "}}}
@@ -123,6 +124,20 @@ hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
 " ======================== Plugin Configurations ======================== "{{{
 
+lua require('github-theme').setup()
+lua << EOF
+require("github-theme").setup({
+  themeStyle = "dimmed",
+  commentStyle = "NONE",
+  keywordStyle = "NONE",
+  functionStyle = "NONE",
+  variableStyle = "NONE",
+  hideInactiveStatusline = true,
+  darkSidebar = true,
+  darkFloat = true,
+  -- ... your github-theme config
+})
+EOF
 "" built in plugins
 let loaded_netrw = 0                                    " diable netew
 let g:omni_sql_no_default_maps = 1                      " disable sql omni completion
