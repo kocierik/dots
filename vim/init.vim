@@ -8,7 +8,6 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin(expand('~/.config/nvim/plugged'))
-
 "}}}
 
 " ================= looks and GUI stuff ================== "{{{
@@ -31,7 +30,6 @@ Plug 'Yggdroot/indentLine'                              " show indentation lines
 Plug 'tpope/vim-liquid'                                 " liquid language support
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " better python
 Plug 'tpope/vim-commentary'                             " better commenting
-Plug 'mhinz/vim-startify'                               " cool start up screen
 Plug 'tpope/vim-fugitive'                               " git support
 Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
 Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
@@ -44,10 +42,11 @@ Plug 'TovarishFin/vim-solidity'
 Plug 'RRethy/nvim-base16' " color theme
 Plug 'folke/zen-mode.nvim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'https://github.com/ryanoasis/vim-devicons' "icon
-Plug 'https://github.com/adelarsq/vim-devicons-emoji' " icon
+"Plug 'https://github.com/adelarsq/vim-devicons-emoji' " icon
 Plug 'preservim/nerdtree' " file manager
 Plug 'projekt0n/github-nvim-theme' "nvim theme
+Plug 'ryanoasis/vim-devicons' "icon
+Plug 'glepnir/dashboard-nvim'     " MENU
 call plug#end()
 
 "}}}
@@ -60,8 +59,8 @@ set clipboard+=unnamedplus                              " use system clipboard b
 set tabstop=2 softtabstop=2 shiftwidth=2 autoindent     " tab width
 set expandtab smarttab                                  " tab key actions
 set incsearch ignorecase smartcase hlsearch             " highlight text while searching
-set list listchars=trail:¬ª,tab:¬ª-                       " use tab to navigate in list mode
-set fillchars+=vert:\‚ñè                                  " requires a patched nerd font (try FiraCode)
+set list listchars=trail:»,tab:»-                       " use tab to navigate in list mode
+set fillchars+=vert:\▏                                  " requires a patched nerd font (try FiraCode)
 set wrap breakindent                                    " wrap long lines to the width set by tw
 set encoding=utf-8                                      " text encoding
 set number                                              " enable numbers on the left
@@ -138,6 +137,18 @@ require("github-theme").setup({
   -- ... your github-theme config
 })
 EOF
+
+
+
+
+
+
+
+
+
+
+
+
 "" built in plugins
 let loaded_netrw = 0                                    " diable netew
 let g:omni_sql_no_default_maps = 1                      " disable sql omni completion
@@ -156,13 +167,13 @@ let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_min_count = 2   " show tabline only if there is more than 1 buffer
 let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
-let airline#extensions#coc#error_symbol = '‚úò:'
-let airline#extensions#coc#warning_symbol = '‚ö†:'
+let airline#extensions#coc#error_symbol = '✘:'
+let airline#extensions#coc#warning_symbol = '⚠:'
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.linenr = ''
-let g:airline_symbols.branch = '‚éá '
+let g:airline_symbols.branch = '⎇ '
 let g:airline_symbols.dirty= ''
 
 "" coc
@@ -194,16 +205,20 @@ let g:coc_global_extensions = [
             \]
 
 " indentLine
-let g:indentLine_char_list = ['‚ñè', '¬¶', '‚îÜ', '‚îä']
+let g:indentLine_char_list = ['▏', '¦', '┆', '┊']
 let g:indentLine_setColors = 0
 let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
-let g:indentLine_fileTypeExclude = ['startify']
+let g:indentLine_fileTypeExclude = ['dashboard']
+let g:dashboard_default_executive ='fzf'
 
-"" startify
-let g:startify_padding_left = 10
-let g:startify_session_persistence = 1
-let g:startify_enable_special = 0
-let g:startify_change_to_vcs_root = 1
+
+
+
+" "" startify
+" let g:startify_padding_left = 10
+" let g:startify_session_persistence = 1
+" let g:startify_enable_special = 0
+" let g:startify_change_to_vcs_root = 1
 let g:startify_lists = [
     \ { 'type': 'dir'       },
     \ { 'type': 'files'     },
@@ -212,35 +227,54 @@ let g:startify_lists = [
     \ { 'type': 'commands' },
     \ ]
 
-" bookmark examples
-let  g:startify_bookmarks =  [
-    \ {'v': '~/.config/nvim'},
-    \ {'d': '~/.dotfiles' }
-    \ ]
+" " bookmark examples
+" let  g:startify_bookmarks =  [
+"     \ {'v': '~/.config/nvim'},
+"     \ {'d': '~/.dotfiles' }
+"     \ ]
 
-" custom commands
-let g:startify_commands = [
-    \ {'ch':  ['Health Check', ':checkhealth']},
-    \ {'ps': ['Plugins status', ':PlugStatus']},
-    \ {'pu': ['Update vim plugins',':PlugUpdate | PlugUpgrade']},
-    \ {'uc': ['Update coc Plugins', ':CocUpdate']},
-    \ {'h':  ['Help', ':help']},
-    \ ]
+" " custom commands
+" let g:startify_commands = [
+"     \ {'ch':  ['Health Check', ':checkhealth']},
+"     \ {'ps': ['Plugins status', ':PlugStatus']},
+"     \ {'pu': ['Update vim plugins',':PlugUpdate | PlugUpgrade']},
+"     \ {'uc': ['Update coc Plugins', ':CocUpdate']},
+"     \ {'h':  ['Help', ':help']},
+"     \ ]
+
+let g:dashboard_custom_shortcut={
+\ 'last_session'       : 'SPC s l',
+\ 'find_history'       : 'SPC f h',
+\ 'find_file'          : 'SPC f f',
+\ 'new_file'           : 'SPC c n',
+\ 'change_colorscheme' : 'SPC t c',
+\ 'find_word'          : 'SPC f a',
+\ 'book_marks'         : 'SPC f b',
+\ }
+
+
 
 " custom banner
-let g:startify_custom_header = [
- \ '',
- \ '                                                    ‚ñü‚ñô            ',
- \ '                                                    ‚ñù‚ñò            ',
- \ '            ‚ñà‚ñà‚ñÉ‚ñÖ‚ñá‚ñà‚ñÜ‚ññ  ‚ñó‚ñü‚ñà‚ñà‚ñà‚ñà‚ñô‚ññ   ‚ñÑ‚ñà‚ñà‚ñà‚ñà‚ñÑ   ‚ñà‚ñà‚ñÑ  ‚ñÑ‚ñà‚ñà  ‚ñà‚ñà  ‚ñó‚ñü‚ñà‚ñÜ‚ñÑ‚ñÑ‚ñÜ‚ñà‚ñô‚ññ',
- \ '            ‚ñà‚ñà‚ñõ‚ñî ‚ñù‚ñà‚ñà  ‚ñà‚ñà‚ñÑ‚ñÑ‚ñÑ‚ñÑ‚ñà‚ñà  ‚ñà‚ñà‚ñõ‚ñî‚ñî‚ñú‚ñà‚ñà  ‚ñù‚ñà‚ñà  ‚ñà‚ñà‚ñò  ‚ñà‚ñà  ‚ñà‚ñà‚ñõ‚ñú‚ñà‚ñà‚ñõ‚ñú‚ñà‚ñà',
- \ '            ‚ñà‚ñà    ‚ñà‚ñà  ‚ñà‚ñà‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñò  ‚ñà‚ñà‚ññ  ‚ñó‚ñà‚ñà   ‚ñú‚ñà‚ñô‚ñü‚ñà‚ñõ   ‚ñà‚ñà  ‚ñà‚ñà  ‚ñà‚ñà  ‚ñà‚ñà',
- \ '            ‚ñà‚ñà    ‚ñà‚ñà  ‚ñú‚ñà‚ñô‚ñÑ‚ñÑ‚ñÑ‚ñü‚ñä  ‚ñÄ‚ñà‚ñà‚ñô‚ñü‚ñà‚ñà‚ñÄ   ‚ñù‚ñà‚ñà‚ñà‚ñà‚ñò   ‚ñà‚ñà  ‚ñà‚ñà  ‚ñà‚ñà  ‚ñà‚ñà',
- \ '            ‚ñÄ‚ñÄ    ‚ñÄ‚ñÄ   ‚ñù‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ     ‚ñÄ‚ñÄ‚ñÄ‚ñÄ       ‚ñÄ‚ñÄ     ‚ñÄ‚ñÄ  ‚ñÄ‚ñÄ  ‚ñÄ‚ñÄ  ‚ñÄ‚ñÄ',
- \ '            ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ‚ñÄ',
- \ '',
- \ '',
- \]
+let g:dashboard_custom_header = [
+    \'',
+    \'   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣭⣿⣶⣿⣦⣼⣆         ',
+    \'    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       ',
+    \'          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷⠄⠄⠄⠄⠻⠿⢿⣿⣧⣄     ',
+    \'           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    ',
+    \'          ⢠⣿⣿⣿⠈  ⠡⠌⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   ',
+    \'   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘⠄ ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  ',
+    \'  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   ',
+    \' ⣠⣿⠿⠛⠄⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  ',
+    \' ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇⠄⠛⠻⢷⣄ ',
+    \'      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ',
+    \'       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ',
+    \'     ⢰⣶  ⣶ ⢶⣆⢀⣶⠂⣶⡶⠶⣦⡄⢰⣶⠶⢶⣦  ⣴⣶     ',
+    \'     ⢸⣿⠶⠶⣿ ⠈⢻⣿⠁ ⣿⡇ ⢸⣿⢸⣿⢶⣾⠏ ⣸⣟⣹⣧    ',
+    \'     ⠸⠿  ⠿  ⠸⠿  ⠿⠷⠶⠿⠃⠸⠿⠄⠙⠷⠤⠿⠉⠉⠿⠆   ',
+    \'',
+    \]
+    
+
 
 " rainbow brackets
 let g:rainbow_active = 1
@@ -280,13 +314,13 @@ autocmd BufEnter * if index(spellable, &ft) < 0 | set nospell | else | set spell
 " coc completion popup
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" startify if no passed argument or all buffers are closed
+" Dashboard if no passed argument or all buffers are closed
 augroup noargs
-    " startify when there is no open buffer left
-    autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
+    " Dashboard when there is no open buffer left
+    autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Dashboard | endif
 
-    " open startify on start if no argument was passed
-    autocmd VimEnter * if argc() == 0 | Startify | endif
+    " open Dashboard on start if no argument was passed
+    autocmd VimEnter * if argc() == 0 | Dashboard | endif
 augroup END
 
 " fzf if passed argument is a folder
@@ -294,8 +328,8 @@ augroup folderarg
     " change working directory to passed directory
     autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | execute 'cd' fnameescape(argv()[0])  | endif
 
-    " start startify (fallback if fzf is closed)
-    autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | Startify  | endif
+    " start Dashboard (fallback if fzf is closed)
+    autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | Dashboard  | endif
 
     " start fzf on passed directory
     autocmd VimEnter * if argc() != 0 && isdirectory(argv()[0]) | execute 'Files ' fnameescape(argv()[0]) | endif
@@ -364,7 +398,7 @@ endfunction
 let mapleader=","
 nnoremap ; :
 nmap \ <leader>q
-map <F6> :Startify <CR>
+map <F6> :Dashboard <CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>q :bd<CR>
 nmap <leader>w :w<CR>
@@ -480,3 +514,4 @@ nnoremap <C-s> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 "}}}
+
