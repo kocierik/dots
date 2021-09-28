@@ -103,6 +103,7 @@ compinit
 export PATH="/usr/local/opt/libpcap/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
+source ~/.zsh/zsh-start/start.plugin.zsh
 setopt promptsubst
 PS1=$'${(r:$COLUMNS::_:)}'$PS1
 
