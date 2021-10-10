@@ -173,7 +173,7 @@ M.mappings.plugins = {
    },
    -- file explorer/tree
    nvimtree = {
-      toggle = "<C-e>",
+      toggle = "<ctrl-e>",
       focus = "<leader>e",
    },
    -- multitool for finding & picking things

@@ -36,7 +36,7 @@ yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Path Finder$" manage=off
 yabai -m rule --add app="^TeamViewer$" sticky=off layer=above manage=off
 yabai -m rule --add app="Fantastical" manage=off
-#yabai -m rule --add app="^Spotify$" manage=off
+yabai -m rule --add app="^Spotify$" manage=off
 #yabai -m rule --add app="^iTerm2$" manage=on
 yabai -m rule --add app="^iTerm$" manage=off
 yabai -m rule --add app="^Flux$" manage=off
@@ -131,13 +131,13 @@ yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
 
 # general space settings
-yabai -m config external_bar                 all:20:0
+yabai -m config external_bar                 all:10:0
 yabai -m config layout                       bsp
-yabai -m config top_padding                  5
-yabai -m config bottom_padding               40
-yabai -m config left_padding                 20
-yabai -m config right_padding                20
-yabai -m config window_gap                   10
+yabai -m config top_padding                  10
+yabai -m config bottom_padding               35
+yabai -m config left_padding                 10
+yabai -m config right_padding                10
+yabai -m config window_gap                   7
 
 
 
