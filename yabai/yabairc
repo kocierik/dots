@@ -25,32 +25,16 @@ yabai -m signal --add event=space_changed action="osascript -e 'tell application
 
 # float system preferences. Most of these just diable Yabai form resizing them.
 yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Karabiner-Elements$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Karabiner-EventViewer$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Finder$" sticky=on lyer=above manage=off
-yabai -m rule --add app="^Keka$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Alfred Preferences$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Path Finder$" manage=off
 yabai -m rule --add app="^TeamViewer$" sticky=off layer=above manage=off
-yabai -m rule --add app="Fantastical" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
-#yabai -m rule --add app="^iTerm2$" manage=on
 yabai -m rule --add app="^iTerm$" manage=off
-yabai -m rule --add app="^Flux$" manage=off
-yabai -m rule --add app="^Time Out$" manage=off
-yabai -m rule --add app="^perl_client_app$" manage=off
-yabai -m rule --add app="^console$" manage=off
-yabai -m rule --add app="^Harvest$" manage=off
-yabai -m rule --add app="^CiscoSparkHelper$" manage=off
-yabai -m rule --add app="^Logi Options$" manage=off
-yabai -m rule --add app="^Cisco Webex Start$" manage=off
-yabai -m rule --add app="^Private Internet Access$" manage=off
 yabai -m rule --add app="^U√É√†bersicht$" manage=off
 
-#find ~/Library/Parallels/Applications\ Menus/ -maxdepth 3 -type f | awk -F'/' '{ print $NF; }' | awk '{$1=$1};1' | sort | uniq | tr "\n" "\0" | xargs -0 -I{} yabai -m rule --add app="^{}\$" title=".*" manage=on
 
 ## Some random global settings
 #yabai -m config focus_follows_mouse          autoraise
@@ -133,11 +117,11 @@ yabai -m config mouse_action2                resize
 # general space settings
 yabai -m config external_bar                 all:10:0
 yabai -m config layout                       bsp
-yabai -m config top_padding                  10
+yabai -m config top_padding                  1
 yabai -m config bottom_padding               35
-yabai -m config left_padding                 10
-yabai -m config right_padding                10
-yabai -m config window_gap                   7
+yabai -m config left_padding                 3
+yabai -m config right_padding                3
+yabai -m config window_gap                   10
 
 
 
@@ -148,12 +132,10 @@ yabai -m signal --add event=display_changed action="osascript -e 'tell applicati
 yabai -m signal --add event=space_changed action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"simple-bar-process-jsx\"'"
 
 
-
-
 #Limelight addon (Kill it and start it each time Yabai starts)
-killall limelight &>/dev/null
-limelight &>/dev/null &
-
+sudo killall limelight &>/dev/null
+sudo limelight &>/dev/null &
+limelight
 # #Ubersicht widget bar stuff
 
 # Refresh spaces widget on space change
@@ -202,3 +184,4 @@ yabai -m signal --add event=window_destroyed action="osascript -e 'tell applicat
 echo "yabai configuration loaded.."
 
 #END
+

@@ -1,0 +1,10 @@
+autoclip: true
+autoimport: true
+cliptimeout: 120
+exportkeys: true
+nopager: false
+notifications: true
+parsing: true
+path: /Users/kocierik/.password-store
+safecontent: false
+mounts: {}
