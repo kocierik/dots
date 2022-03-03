@@ -1,4 +1,4 @@
-#KHD STUFF
+
 
 # if you're having troubles finding key codes for a key just type skhd --observe in a terminal and type a key. Pretty cool! Or just check the wiki.
 
@@ -8,20 +8,23 @@
 ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 ## Close active application
-ctrl - backspace : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
+cmd + shift - backspace : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
 
 # test a command
 # lshift - x : terminal-notifier -message "lshift - x"
 #lshift - x : terminal-notifier -message "$(yabai -m query --windows --window | jq -re ".id")"
 
 ## open terminal
-ctrl - return : /Applications/iTerm.app/Contents/MacOS/iTerm2
+cmd - return : /Applications/iTerm.app/Contents/MacOS/iTerm2
+
+## open chrome
+alt - c : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 
 ## swap window
-ctrl - 0x1E : yabai -m window --swap west
+# cmd - s : yabai -m window --swap west
 # shft + alt - j : yabai -m window --swap south
 # shift + alt - k : yabai -m window --swap north
-ctrl - 0x21 : yabai -m window --swap east # 0x21 is the "[" key
+# cmd + shift - s : yabai -m window --swap east # 0x21 is the "[" key
 
 ## send window to monitor and follow focus
 ctrl - f : .config/script/moveWindowLeftAndFollowFocus.sh
@@ -48,7 +51,7 @@ ctrl - a : yabai -m window --resize right:-20:0
 ctrl - r : yabai -m space --rotate 90
 
 ## flip the tree vertically
-#cmd - f - 4 : yabai -m space --mirror y-axis
+cmd - s : yabai -m space --mirror y-axis
 # mirror tree y-axis
 #alt - y : yabai -m space --mirror y-axis
 ## mirror tree x-axis
@@ -107,7 +110,7 @@ ctrl + alt + cmd + lshift - o : yabai -m query --spaces | jq -re ".[] | select(.
 ctrl + alt + cmd + lshift - return : yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
 #create a stack
-# ctrl + alt + cmd + rshift - 1 : yabai -m query --windows --window | jq -re "." | xargs -I{} yabai -m window 1 --stack {}
+#ctrl + alt + cmd + rshift - 1 : yabai -m query --windows --window | jq -re "." | xargs -I{} yabai -m window 1 --stack {}
 # stack next window onto current window
 ctrl + alt + cmd + lshift - 0x43 : window=$(yabai -m query --windows --window | jq -r '.id') && yabai -m window east --stack $window || (yabai -m window $window --toggle float && yabai -m window $window --toggle float)
 
@@ -126,7 +129,7 @@ ctrl + alt + cmd + lshift - 0x43 : window=$(yabai -m query --windows --window | 
 #alt - e : yabai -m window --toggle split
 
 ## toggle window border
-shift + alt - b : yabai -m window --toggle border
+alt - b : yabai -m window --toggle border
 
 ## create desktop, move window and follow focus
 #shift + cmd - n : yabai -m space --create && \
@@ -162,7 +165,11 @@ cmd - 8 : yabai -m space --focus 8
 #cmd + alt - 9 : yabai -m space --focus 9
 #cmd + alt - 0 : yabai -m space --focus 10
 
+#VOLUME up or down
+cmd - 0 : m volume +5
+cmd - 9 : m volume -5
 ## move window
+#
 #shift + ctrl - a : yabai -m window --move rel:-20:0
 #shift + ctrl - s : yabai -m window --move rel:0:20
 #shift + ctrl - w : yabai -m window --move rel:0:-20
@@ -181,3 +188,4 @@ cmd - 8 : yabai -m space --focus 8
 #ctrl + alt - 1  : yabai -m display --focus 1
 #ctrl + alt - 2  : yabai -m display --focus 2
 #ctrl + alt - 3  : yabai -m display --focus 3
+
