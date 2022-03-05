@@ -26,6 +26,7 @@ yabai -m signal --add event=space_changed action="osascript -e 'tell application
 # float system preferences. Most of these just diable Yabai form resizing them.
 yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Finder$" sticky=on lyer=above manage=off
+yabai -m rule --add app="^Burp Suite Community Edition$" sticky=on lyer=above manage=on
 yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
