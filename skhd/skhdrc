@@ -51,7 +51,7 @@ ctrl - a : yabai -m window --resize right:-20:0
 ctrl - r : yabai -m space --rotate 90
 
 ## flip the tree vertically
-cmd - s : yabai -m space --mirror y-axis
+ctrl - s : yabai -m space --mirror y-axis
 # mirror tree y-axis
 #alt - y : yabai -m space --mirror y-axis
 ## mirror tree x-axis
