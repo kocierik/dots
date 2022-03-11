@@ -27,5 +27,8 @@ require'visimp'{
   },
   fugitive = {},
   lspsignature = {},
-  theme = {'lifepillar/vim-gruvbox8', 'gruvbox8', 'dark'}
+--  theme = {'lifepillar/vim-gruvbox8', 'gruvbox8', 'dark'}
+  --theme = {'navarasu/onedark.nvim', 'onedark', 'dark'}
+  theme = {'dunstontc/vim-vscode-theme', 'dark_plus', 'dark'}
 }
+
