@@ -2,7 +2,7 @@ require'visimp'{
   defaults = {
     --relativenumber = false,
   },
-  statusline = {
+   statusline = {
     tabline = {
       lualine_a = {'buffers'}
     }
@@ -22,13 +22,11 @@ require'visimp'{
   css = {
     scss = true,
   },
-  c = {
-    c = false
+  binds = {
+    [{ mode = 'n', bind = '<A-Left>'}] = 'bprev',
+    [{ mode = 'n', bind = '<A-Right>'}] = 'bnext'
   },
   fugitive = {},
   lspsignature = {},
---  theme = {'lifepillar/vim-gruvbox8', 'gruvbox8', 'dark'}
-  --theme = {'navarasu/onedark.nvim', 'onedark', 'dark'}
   theme = {'dunstontc/vim-vscode-theme', 'dark_plus', 'dark'}
 }
-
