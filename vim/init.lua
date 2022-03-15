@@ -1,6 +1,6 @@
 require'visimp'{
   defaults = {
-    --relativenumber = false,
+  -- relativenumber = false,
   },
    statusline = {
     tabline = {
@@ -28,5 +28,12 @@ require'visimp'{
   },
   fugitive = {},
   lspsignature = {},
+  lspformat = {},
+  lsp = {
+    nullls = {
+      'formatting.prettier',
+      'formatting.clang_format'
+    }
+  },
   theme = {'dunstontc/vim-vscode-theme', 'dark_plus', 'dark'}
 }
