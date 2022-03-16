@@ -35,5 +35,5 @@ require'visimp'{
       'formatting.clang_format'
     }
   },
-  theme = {'dunstontc/vim-vscode-theme', 'dark_plus', 'dark'}
+  theme = {'ntk148v/vim-horizon', 'horizon', 'dark'}
 }
