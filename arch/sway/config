@@ -17,6 +17,8 @@ font pango:$font
 default_border pixel 3
 client.focused "#EECC11" "#EECC11" "#EECC11" "#EECC11" "#EECC11"
 
+gaps vertical 10
+gaps horizontal 5
 
 # class                 border  bgcolor text    indicator   child_border
 #client.focused		$green  $bg     $fg     $fg         $green
