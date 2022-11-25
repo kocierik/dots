@@ -1,10 +1,7 @@
-require'visimp'{
-  defaults = {
-  -- relativenumber = false,
-  },
-   statusline = {
+require 'visimp' {
+  statusline = {
     tabline = {
-      lualine_a = {'buffers'}
+      lualine_a = { 'buffers' }
     }
   },
   languages = {
@@ -12,28 +9,28 @@ require'visimp'{
     'bash',
     'css',
     'html',
-    'java',
     'javascript',
     'json',
     'latex',
     'lua',
     'python',
+    'go'
   },
   css = {
     scss = true,
   },
   binds = {
-    [{ mode = 'n', bind = '<A-Left>'}] = 'bprev',
-    [{ mode = 'n', bind = '<A-Right>'}] = 'bnext'
+    [{ mode = 'n', bind = '<C-Left>' }] = 'bprev',
+    [{ mode = 'n', bind = '<C-Right>' }] = 'bnext'
   },
   fugitive = {},
-  lspsignature = {},
+  autopairs = {},
   lspformat = {},
-  lsp = {
-    nullls = {
-      'formatting.prettier',
-      'formatting.clang_format'
-    }
-  },
-  theme = {'ntk148v/vim-horizon', 'horizon', 'dark'}
+  treesitter = {},
+  theme = {
+    package = 'bluz71/vim-nightfly-guicolors',
+    colorscheme = 'nightfly',
+    background = 'dark',
+    lualine = 'nightfly',
+  }
 }
