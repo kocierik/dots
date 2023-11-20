@@ -1,6 +1,6 @@
 # theming preferences
 set $font CaskaydiaCove Nerd Font 16px
-set $wallpaper ~/Pictures/background.jpg
+set $wallpaper ~/Pictures/background.png
 
 set $mod Mod4
 # vi movement
@@ -12,6 +12,7 @@ set $right l
 # terminal and application launcher
 set $term footclient
 set $menu wofi --show drun 
+set $sShot grim -g "$(slurp)" 
 # styling
 font pango:$font
 default_border pixel 3
@@ -19,7 +20,7 @@ client.focused "#EECC11" "#EECC11" "#EECC11" "#EECC11" "#EECC11"
 
 gaps vertical 10
 gaps horizontal 5
-
+gaps inner 5
 # class                 border  bgcolor text    indicator   child_border
 #client.focused		$green  $bg     $fg     $fg         $green
 
@@ -38,7 +39,7 @@ exec swaybg -i $wallpaper -m $background_mode
 # This will lock your screen after 600 seconds of inactivity, then turn off
 # your displays after another 900 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
-set $lock swaylock -f -i $wallpaper -s $background_mode
+
 exec swayidle -w \
   timeout 600 '$lock' \
   timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
@@ -58,13 +59,14 @@ input type:touchpad {
 input type:keyboard {
   repeat_rate 60
   repeat_delay 300
-  xkb_layout it
+  xkb_layout us,it
+  xkb_options grp:rctrl_toggle
 }
 
 # launching(sway)
 bindsym $mod+Return exec $term
 # screenshot binds
-bindsym $mod+Alt+1 exec scr
+bindsym Alt+Shift+3 exec $sShot
 # launching(wofi)
 bindsym $mod+space exec $menu
 # closing
@@ -96,7 +98,7 @@ bindsym $mod+Shift+$right move right
 
 # 6 workspaces (3 named)
 set $w1 1 web
-set $w2 2 vi
+set $w2 2 vim
 set $w3 3 sh
 bindsym $mod+1 workspace number $w1
 bindsym $mod+2 workspace number $w2
@@ -159,8 +161,16 @@ bar {
 }
 
 # various daemons
-exec_always kanshi # auto monitor config
+# exec_always kanshi # auto monitor config
 exec mako
 exec foot --server
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec $lock
+
+#flameshot
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+
+
