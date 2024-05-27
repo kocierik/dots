@@ -1,6 +1,7 @@
 # theming preferences
 set $font CaskaydiaCove Nerd Font 16px
-set $wallpaper ~/Pictures/background.png
+# set $font Cascadia Code 10px
+set $wallpaper ~/Pictures/wallpaper.jpg
 
 set $mod Mod4
 # vi movement
@@ -23,6 +24,9 @@ gaps horizontal 5
 gaps inner 5
 # class                 border  bgcolor text    indicator   child_border
 #client.focused		$green  $bg     $fg     $fg         $green
+
+set $lockman exec swaylock -C ~/.config/swaylock/config
+bindsym $mod+b exec $lockman
 
 set $gnome-schema org.gnome.desktop.interface
 set $cursor Adwaita
@@ -174,3 +178,5 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
 
 
 
+bindgesture swipe:right workspace prev
+bindgesture swipe:left workspace next
